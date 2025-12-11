@@ -80,7 +80,7 @@ def kill_pids():
             kill_process = psutil.Process(pid_to_kill)
             process_name = kill_process.name()
             kill_process.terminate()
-            print(f"Éxito: PID {pid_to_kill} ({process_name}) succesfully killed.")
+            print(f"PID {pid_to_kill} ({process_name}) succesfully killed.")
             
         except psutil.NoSuchProcess:
             print(f"\nAviso: PID {pid_to_kill} already was killed.")
