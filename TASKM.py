@@ -48,7 +48,7 @@ def get_pids():
             
 def kill_pids():
     print("╭───────────────────────────────────")
-    entrada = input("╰─> PID o Nombre del Proceso ('q' para salir): ").strip()
+    entrada = input("╰─> PID or Process Name('q' to exit): ").strip()
     
     if entrada.lower() == 'q':
         print("\nSaliendo de TASK M. ¡Adiós!")
@@ -68,11 +68,11 @@ def kill_pids():
                 continue
         
         if not pids_to_terminate:
-            print(f"\nError: No se encontró ningún proceso con el nombre o PID '{entrada}'.")
+            print(f"\nError: No process was found with the name or PID '{entrada}'.")
             return
 
     if not pids_to_terminate:
-         print("\nError: Entrada vacía o inválida.")
+         print("\nError: Invalid Input.")
          return
 
     for pid_to_kill in pids_to_terminate:
@@ -80,14 +80,14 @@ def kill_pids():
             kill_process = psutil.Process(pid_to_kill)
             process_name = kill_process.name()
             kill_process.terminate()
-            print(f"Éxito: PID {pid_to_kill} ({process_name}) terminado con éxito.")
+            print(f"Éxito: PID {pid_to_kill} ({process_name}) succesfully killed.")
             
         except psutil.NoSuchProcess:
-            print(f"\nAviso: PID {pid_to_kill} ya fue terminado o no existe.")
+            print(f"\nAviso: PID {pid_to_kill} already was killed.")
         except psutil.AccessDenied:
-            print(f"\nError: Permiso denegado. No puedes terminar el PID {pid_to_kill}.")
+            print(f"\nError: Permission denied. You cant kill {pid_to_kill}.")
         except Exception as e:
-            print(f"\nError inesperado con PID {pid_to_kill}: {e}")
+            print(f"\nUnexpected error. {pid_to_kill}: {e}")
 
 def menu_loop():
     while True:
